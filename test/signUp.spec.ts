@@ -229,7 +229,7 @@ test.describe('Sign-up tests', () => {
 			await page.locator('#signupRepeatPassword').fill(VALID_USER1.password);
 			await page.locator('.modal-content .btn-primary').click();
 			await expect(page.locator('.alert-danger')).toHaveText('User already exists');
-			await expect(page.locator('.alert-danger')).toHaveCSS('color', 'rgb(220, 53, 69)');
+			await expect(page.locator('.alert-danger')).toHaveCSS('color', 'rgb(114, 28, 36)');
 		});
 
 		test('Sign up with empty fields', async ({ page }) => {
