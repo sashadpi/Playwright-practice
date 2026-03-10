@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { VALID_USER1 } from '../test-data/users';
-import { VALID_USER2 } from '../test-data/users';
+import { RANDOM_USER1 } from '../test-data/users';
 
-test.describe('Sign-up tests', () => {
+test.describe('Sign-up form tests', () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto('/');
 		await page.locator('.btn-primary').click();
@@ -214,9 +214,9 @@ test.describe('Sign-up tests', () => {
 		test('Successful sign up', async ({ page }) => {
 			await page.locator('#signupName').fill('Sasha');
 			await page.locator('#signupLastName').fill('Brusnichenko');
-			await page.locator('#signupEmail').fill(VALID_USER2.email);
-			await page.locator('#signupPassword').fill(VALID_USER2.password);
-			await page.locator('#signupRepeatPassword').fill(VALID_USER2.password);
+			await page.locator('#signupEmail').fill(RANDOM_USER1.email);
+			await page.locator('#signupPassword').fill(RANDOM_USER1.password);
+			await page.locator('#signupRepeatPassword').fill(RANDOM_USER1.password);
 			await page.locator('.modal-content .btn-primary').click();
 			await expect(page.locator('h1')).toHaveText('Garage');
 		});

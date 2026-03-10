@@ -5,8 +5,13 @@ export const VALID_USER1 = {
 
 let newMember = `sashadpi68+${Date.now()}@gmail.com`;
 
-export const VALID_USER2 = {
+export const RANDOM_USER1 = {
 	email: newMember,
 	password: '!Pre2225500',
 
+};
+
+export const UNVALID_USER1 = {
+	email: 'sashadpi68gmail.com',
+	password: '12',
 };
