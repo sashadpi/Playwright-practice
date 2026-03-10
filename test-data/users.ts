@@ -11,7 +11,7 @@ export const RANDOM_USER1 = {
 
 };
 
-export const UNVALID_USER1 = {
+export const INVALID_USER1 = {
 	email: 'sashadpi68gmail.com',
 	password: '12',
 };

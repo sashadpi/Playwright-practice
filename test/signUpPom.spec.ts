@@ -5,6 +5,7 @@ import HomePage from '../pom/pages/HomePage';
 import SignUpForm from '../pom/forms/SignUpForm';
 import { SignUpMessagesError } from '../test-data/messeges';
 import GaragePage from '../pom/pages/GaragePage';
+import { INVALID_USER1 } from '../test-data/users';
 
 test.describe('Sign-up form tests', () => {
 	let homePage: HomePage;
@@ -98,7 +99,7 @@ test.describe('Sign-up form tests', () => {
 		});
 
 		test('Invalid email', async () => {
-			await signUpForm.emailField.fill('asap');
+			await signUpForm.emailField.fill(INVALID_USER1.email);
 			await signUpForm.emailField.blur();
 			await expect(signUpForm.validationError).toHaveText(SignUpMessagesError.emailIncorrect);
 			await expect(signUpForm.validationError).toHaveCSS('color', SignUpMessagesError.toHaveColor);
