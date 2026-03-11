@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { VALID_USER1 } from '../test-data/users';
+import { RANDOM_USER1 } from '../test-data/users';
 
-test.describe('Sign-up tests', () => {
+test.describe('Sign-up form tests', () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto('/');
 		await page.locator('.btn-primary').click();
@@ -208,15 +209,37 @@ test.describe('Sign-up tests', () => {
 			await expect(page.locator('.invalid-feedback')).toBeHidden();
 		});
 	});
-	test.describe('Successful sign up', () => {
+
+	test.describe('Use all fields in sign up', () => {	
 		test('Successful sign up', async ({ page }) => {
 			await page.locator('#signupName').fill('Sasha');
 			await page.locator('#signupLastName').fill('Brusnichenko');
-			await page.locator('#signupEmail').fill(`sashadpi68+${Date.now()}@gmail.com`);
+			await page.locator('#signupEmail').fill(RANDOM_USER1.email);
+			await page.locator('#signupPassword').fill(RANDOM_USER1.password);
+			await page.locator('#signupRepeatPassword').fill(RANDOM_USER1.password);
+			await page.locator('.modal-content .btn-primary').click();
+			await expect(page.locator('h1')).toHaveText('Garage');
+		});
+
+		test('Sign up with already registered email', async ({ page }) => {
+			await page.locator('#signupName').fill('Sasha');
+			await page.locator('#signupLastName').fill('Brusnichenko');
+			await page.locator('#signupEmail').fill(VALID_USER1.email);
 			await page.locator('#signupPassword').fill(VALID_USER1.password);
 			await page.locator('#signupRepeatPassword').fill(VALID_USER1.password);
 			await page.locator('.modal-content .btn-primary').click();
-			await expect(page.locator('h1')).toHaveText('Garage');
+			await expect(page.locator('.alert-danger')).toHaveText('User already exists');
+			await expect(page.locator('.alert-danger')).toHaveCSS('color', 'rgb(114, 28, 36)');
+		});
+
+		test('Sign up with empty fields', async ({ page }) => {
+			await page.locator('#signupName').focus();
+			await page.locator('#signupLastName').focus();
+			await page.locator('#signupEmail').focus();
+			await page.locator('#signupPassword').focus();
+			await page.locator('#signupRepeatPassword').focus();
+			await page.locator('#signupRepeatPassword').blur();
+			await expect(page.locator('.btn-primary', { hasText: 'Register' })).toBeDisabled();
 		});
 	});
 });
