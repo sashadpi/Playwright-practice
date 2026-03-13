@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@faker-js/faker": "^10.3.0",
+    "dotenv": "^17.3.1",
     "prettier": "^3.8.1"
   },
   "devDependencies": {
