@@ -3,6 +3,11 @@ export const VALID_USER1 = {
 	password: '!Pre2225500',
 };
 
+export const VALID_USER2 = {
+	email: 'sashadpi68+1@gmail.com',
+	password: '!Pre2225500',
+};
+
 let newMember = `sashadpi68+${Date.now()}@gmail.com`;
 
 export const RANDOM_USER1 = {

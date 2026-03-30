@@ -46,7 +46,6 @@ export default defineConfig({
 		{
 			name: 'setup',
 			testMatch: 'test/setup/**.setup.ts',
-			use: { ...devices['Desktop Chrome'] },
 		},
 		{
 			name: 'e2e-smoke',
@@ -54,6 +53,11 @@ export default defineConfig({
 			use: { ...devices['Desktop Chrome'] },
 			dependencies: ['setup'],
 		},
+		{
+			name: 'api-smoke',
+			testMatch: 'test/api/**.api.ts',
+			dependencies: ['setup'],
+		}
 
 		// {
 		// 	name: 'firefox',
