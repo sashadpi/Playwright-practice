@@ -1,9 +1,11 @@
 name: Playwright Github Pages Tests
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+  # push:
+  #   branches: [main, master]
+  # pull_request:
+  #   branches: [main, master]
+  schedule:
+    - cron: '48 * * * *'
   workflow_dispatch:
 jobs:
   test:
